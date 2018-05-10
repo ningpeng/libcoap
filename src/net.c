@@ -74,7 +74,7 @@
 #error FRAC_BITS must be less or equal 8
 #endif
 
-	/** creates a Qx.frac from fval in coap_fixed_point_t ###这是定义一个u16的定点数字, 低fval位是小数部分 , 其它高位是整数部分*/
+	/** creates a Qx.frac from fval in coap_fixed_point_t ###这是定义一个u16的定点数字, 低frac位是小数部分 , 其它高位是整数部分*/
 #define Q(frac,fval) ((uint16_t)(((1 << (frac)) * fval.integer_part) + \
                       ((1 << (frac)) * fval.fractional_part + 500)/1000))
 
@@ -82,7 +82,7 @@
 #define ACK_RANDOM_FACTOR					\
   Q(FRAC_BITS, session->ack_random_factor)
 
-/** creates a Qx.FRAC_BITS from session's 'ack_timeout' ###这个数字是 COAP_DEFAULT_ACK_RANDOM_FACTOR,  最后是 1.5 */
+/** creates a Qx.FRAC_BITS from session's 'ack_timeout' ###这个数字是 COAP_DEFAULT_ACK_RANDOM_FACTOR,  最后相当于 1.5 */
 #define ACK_TIMEOUT Q(FRAC_BITS, session->ack_timeout)
 
 #if !defined(WITH_LWIP) && !defined(WITH_CONTIKI)
